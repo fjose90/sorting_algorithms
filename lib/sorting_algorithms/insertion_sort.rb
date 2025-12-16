@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
-def insertion_sort(array)
-  (1...array.length).each do |i|
-    key = array[i]
-    j = i - 1
-    while j >= 0 && array[j] > key
-      array[j + 1] = array[j]
-      j -= 1
+module SortingAlgorithms
+  module InsertionSort
+    def self.call(array)
+      result = array.dup
+      (1...result.length).each do |i|
+        key = result[i]
+        j = i - 1
+        while j >= 0 && result[j] > key
+          result[j + 1] = result[j]
+          j -= 1
+        end
+        result[j + 1] = key
+      end
+      result
     end
-    array[j + 1] = key
   end
-  array
 end
