@@ -2,18 +2,22 @@
 
 module SortingAlgorithms
   module InsertionSort
-    def self.call(array)
-      result = array.dup
-      (1...result.length).each do |i|
-        key = result[i]
-        j = i - 1
-        while j >= 0 && result[j] > key
-          result[j + 1] = result[j]
-          j -= 1
+    class << self
+      def call(array)
+        result = array.dup
+
+        (1...result.length).each do |i|
+          j = i - 1
+          key = result[i]
+
+          while j >= 0 && result[j] > key
+            result[j + 1] = result[j]
+            j -= 1
+          end
+          result[j + 1] = key
         end
-        result[j + 1] = key
+        result
       end
-      result
     end
   end
 end
