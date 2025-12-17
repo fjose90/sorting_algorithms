@@ -23,4 +23,6 @@ RSpec.configure do |config|
   # Executa os testes em ordem aleatória para detectar dependências ocultas
   config.order = :random
   Kernel.srand(config.seed)
+
+  Dir[File.join(__dir__, "support/**/*.rb")].sort.each { |f| require f }
 end

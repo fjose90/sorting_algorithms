@@ -2,6 +2,6 @@
 
 require "spec_helper"
 
-RSpec.describe(SortingAlgorithms::InsertionSort) do
+RSpec.describe(SortingAlgorithms::QuickSort) do
   it_behaves_like "a sorting algorithm"
 end
