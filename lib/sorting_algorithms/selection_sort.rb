@@ -1,15 +1,22 @@
 # frozen_string_literal: true
 
-def selection_sort(array)
-  (0...array.length).each do |i|
-    min = i
-    (i + 1...array.length).each do |j|
-      next if array[j] >= array[min]
+module SortingAlgorithms
+  module SelectionSort
+    class << self
+      def call(array)
+        result = array.dup
+        (0...result.length).each do |i|
+          min = i
+          (i + 1...result.length).each do |j|
+            next if result[j] >= result[min]
 
-      temp = array[j]
-      array[j] = array[min]
-      array[min] = temp
+            temp = result[j]
+            result[j] = result[min]
+            result[min] = temp
+          end
+        end
+        result
+      end
     end
   end
-  array
 end
