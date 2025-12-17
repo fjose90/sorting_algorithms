@@ -1,0 +1,40 @@
+name: Ruby CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.1', '3.2', '3.3', '3.4']
+
+    steps:
+      # 1. Faz checkout do código
+      - uses: actions/checkout@v4
+
+      # 2. Configura Ruby com cache do Bundler
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      # 3. Instala dependências
+      - name: Install dependencies
+        run: bundle install
+
+      # 4. Roda RuboCop
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
+      # 5. Roda testes RSpec
+      - name: Run RSpec tests
+        run: bundle exec rspec
